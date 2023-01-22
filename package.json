@@ -9,10 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@nanostores/vue": "^0.6.1",
     "dotenv": "^16.0.3",
     "firebase": "^9.15.0",
+    "nanostores": "^0.7.1",
     "sass": "^1.57.1",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

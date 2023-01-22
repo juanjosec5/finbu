@@ -1,13 +1,39 @@
 import { auth } from './app'
-import { onAuthStateChanged,
+import {
+    onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
-    GoogleAuthProvider, signOut } from 'firebase/auth'
+    GoogleAuthProvider,
+    signOut
+} from 'firebase/auth'
+import { loginState, userEmail } from '../store';
 
 class FirebaseAuth{
-    constructor(){
-        onAuthStateChanged(auth, (creds) => console.log(creds));
+    constructor() {
+        // this.loginCb = null;
+        // this.logoutCb = null;
+
+        onAuthStateChanged(auth, (creds) => {
+            loginState.set(creds !== null);
+            console.log('logged? ', creds);
+            userEmail.set(creds?.email || '');
+            // if (this.loginCb && creds) {
+            //     this.loginCb(creds)
+            // }
+
+            // if (this.logoutCb &&!creds) {
+            //     this.logoutCb()
+            // }
+        });
     }
+
+    // onLogin(callback) {
+    //     this.loginCb = callback;
+    // }
+
+    // onLogout(callback) {
+    //     this.logoutCb = callback;
+    // }
 
     onLoginError({code}) {
         switch (code) {

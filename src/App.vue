@@ -1,12 +1,22 @@
 <script setup>
-import SignInForm from './components/signInForm.vue';
+import MainNavbar from './components/navbar.vue';
 import Auth from './firebase/auth';
+import { ref } from 'vue';
+import * as store from './store';
+import { useStore } from '@nanostores/vue';
+
+const $loginState = useStore(store.loginState);
+const $userEmail = useStore(store.userEmail);
+//loginState.value inside script tag
+//template tag uses loginState
+
+// Auth.onLogin((user) => loginState.value = true);
+// Auth.onLogout(() => loginState.value = false);
 </script>
 
 <template>
-  <sign-in-form></sign-in-form>
-  <button @click="Auth.googleLogin">login with Google</button>
-  <button @click="Auth.signOut">Sign out</button>
+  <main-navbar></main-navbar>
+  <router-view/>
 </template>
 
 <style lang="scss">
